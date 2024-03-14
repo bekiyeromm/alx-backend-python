@@ -5,7 +5,7 @@ argument and returns their sum as a float.
 """
 
 
-def sum_list(input_list: list) -> float:
+def sum_list(input_list: list[float]) -> float:
     """
     calculate the sum of float in a list
     """
