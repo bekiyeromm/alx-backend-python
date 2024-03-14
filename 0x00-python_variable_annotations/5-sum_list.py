@@ -9,10 +9,7 @@ def sum_list(input_list: list) -> float:
     """
     calculate the sum of float in a list
     """
-    """
-    an other way of calculating sum
     sum: float = 0.0
     for list_item in input_list:
-    sum += list_item
-    """
-    return (sum(input_list))
+        sum += list_item
+    return (sum)
