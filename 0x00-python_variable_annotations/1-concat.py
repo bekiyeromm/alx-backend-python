@@ -1,4 +1,4 @@
-#!/user/bin/env python3
+#!/usr/bin/env python3
 """
 that takes a string str1 and a string str2 as
 arguments and returns a concatenated string
