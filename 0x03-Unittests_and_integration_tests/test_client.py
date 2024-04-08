@@ -53,3 +53,15 @@ class TestGithubOrgClient(unittest.TestCase):
                 GithubOrgClient("google")._public_repos_url,
                 "https://api.github.com/users/google/repos",
             )
+    @patch("client.get_json", return_value=[{"name": "holberton"}])
+    def test_public_repos(self, mock_get):
+        """ to unit-test GithubOrgClient.public_repos """
+        with patch.object(GithubOrgClient,
+                          "_public_repos_url",
+                          new_callable=PropertyMock,
+                          return_value="https://api.github.com/") as mock_pub:
+            test_client = GithubOrgClient("hoberton")
+            test_return = test_client.public_repos()
+            self.assertEqual(test_return, ["holberton"])
+            mock_get.assert_called_once
+            mock_pub.assert_called_once
