@@ -8,7 +8,7 @@ returns what it is supposed to
 import unittest
 from unittest.mock import patch, Mock
 from parameterized import parameterized
-from utils import access_nested_map
+from utils import access_nested_map, get_json
 
 
 class TestAccessNestedMap(unittest.TestCase):
@@ -50,3 +50,20 @@ class TestAccessNestedMap(unittest.TestCase):
                 else:
                     raise KeyError(key)
             self.assertEqual(str(context.exception), expected_message)
+
+
+class TestGetJson(unittest.TestCase):
+    @parameterized.expand([
+        ("http://example.com", {"payload": True}),
+        ("http://holberton.io", {"payload": False})
+    ])
+    def test_get_json(self, test_url, test_payload):
+        """Mocking the response of requests.get
+        args:
+            tets_url:- url
+            test_payload:- expected out put
+        """
+        attrs = {'json.return_value': test_payload}
+        with patch("requests.get", return_value=Mock(**attrs)) as req_get:
+            self.assertEqual(get_json(test_url), test_payload)
+            req_get.assert_called_once_with(test_url)
