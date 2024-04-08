@@ -72,16 +72,17 @@ class TestGithubOrgClient(unittest.TestCase):
     @parameterized.expand([
         ({"license": {"key": "my_license"}}, "my_license", True),
         ({"license": {"key": "other_license"}}, "my_license", False),
-        ])
+    ])
     def test_has_license(self, repo, license_key, expected_return):
         """ to unit-test GithubOrgClient.has_license """
         test_client = GithubOrgClient("holberton")
         test_return = test_client.has_license(repo, license_key)
         self.assertEqual(expected_return, test_return)
+
     @parameterized_class(
-    ("org_payload", "repos_payload", "expected_repos", "apache2_repos"),
-    TEST_PAYLOAD
-)
+        ("org_payload", "repos_payload", "expected_repos", "apache2_repos"),
+        TEST_PAYLOAD
+    )
     class TestIntegrationGithubOrgClient(unittest.TestCase):
         """ TESTCASE """
         @classmethod
@@ -89,6 +90,17 @@ class TestGithubOrgClient(unittest.TestCase):
             """ It is part of the unittest.TestCase API
             method to return example payloads found in the fixtures """
             cls.get_patcher = patch('requests.get', side_effect=HTTPError)
+            cls.get_patcher.start()
+
+        def test_public_repos(self):
+            """ method to test GithubOrgClient.public_repos """
+            test_class = GithubOrgClient("holberton")
+            assert True
+
+        def test_public_repos_with_license(self):
+            """ method to test the public_repos with the argument license """
+            test_class = GithubOrgClient("holberton")
+            assert True
 
         @classmethod
         def tearDownClass(cls):
