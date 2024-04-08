@@ -38,6 +38,7 @@ class TestGithubOrgClient(unittest.TestCase):
         mocked_fxn.assert_called_once_with(
             "https://api.github.com/orgs/{}".format(org)
         )
+
     def test_public_repos_url(self) -> None:
         '''
         Tests public_repos_url output
@@ -45,7 +46,7 @@ class TestGithubOrgClient(unittest.TestCase):
         with patch(
                 "client.GithubOrgClient.org",
                 new_callable=PropertyMock,
-                ) as mock_org:
+        ) as mock_org:
             mock_org.return_value = {
                 'repos_url': "https://api.github.com/users/google/repos",
             }
@@ -53,6 +54,7 @@ class TestGithubOrgClient(unittest.TestCase):
                 GithubOrgClient("google")._public_repos_url,
                 "https://api.github.com/users/google/repos",
             )
+
     @patch("client.get_json", return_value=[{"name": "holberton"}])
     def test_public_repos(self, mock_get):
         """ to unit-test GithubOrgClient.public_repos """
