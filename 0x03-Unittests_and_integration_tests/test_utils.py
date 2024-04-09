@@ -13,8 +13,10 @@ from utils import memoize
 
 
 class TestAccessNestedMap(unittest.TestCase):
-    """Unit tests for accessing values in a nested map."""
-
+    """
+    test case
+    Unit tests for accessing values in a nested map
+    """
     @parameterized.expand([
         ({"a": 1}, ('a',), 1),
         ({"a": {"b": 2}}, ("a",), {"b": 2}),
@@ -55,6 +57,9 @@ class TestAccessNestedMap(unittest.TestCase):
 
 
 class TestGetJson(unittest.TestCase):
+    """
+    to test the function for following inputs
+    """
     @parameterized.expand([
         ("http://example.com", {"payload": True}),
         ("http://holberton.io", {"payload": False})
@@ -72,6 +77,9 @@ class TestGetJson(unittest.TestCase):
 
 
 class TestMemoize(unittest.TestCase):
+    """
+    test case
+    """
     def test_memoize(self):
         """test the out put for the method memoiz"""
         class TestClass:
