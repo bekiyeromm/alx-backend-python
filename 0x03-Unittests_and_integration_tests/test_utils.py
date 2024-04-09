@@ -13,6 +13,7 @@ from utils import memoize
 
 
 class TestAccessNestedMap(unittest.TestCase):
+    """Unit tests for accessing values in a nested map."""
 
     @parameterized.expand([
         ({"a": 1}, ('a',), 1),
